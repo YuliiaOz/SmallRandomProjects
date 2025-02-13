@@ -28,7 +28,7 @@ def animate_opening(frame):
     ax.fill(right_x, right_y, color='white')
     ax.add_patch(plt.Rectangle((-20, -20), 40, 40, color='red'))
     if frame == 29:
-        ax.text(0, 0, "Bonne Saint Valentin!", fontsize=16, color='white', ha='center', fontweight='bold')
+        ax.text(0, 0, "Bonne Saint Valentin!", fontsize=16, color='black', ha='center', fontweight='bold')  # Texte en noir
         scatter_hearts()
     return []
 
