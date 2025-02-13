@@ -25,13 +25,15 @@ def animate_opening(frame):
     left_x, left_y = heart_shape(t, scale=1, offset_x=-split_factor * 8)
     right_x, right_y = heart_shape(t, scale=1, offset_x=split_factor * 8)
     
-    ax.plot(left_x, left_y, 'r', linewidth=3)
-    ax.plot(right_x, right_y, 'r', linewidth=3)
+    ax.plot(left_x, left_y, 'w', linewidth=3)
+    ax.plot(right_x, right_y, 'w', linewidth=3)
     
+    ax.add_patch(plt.Rectangle((-20, -20), 40, 40, color='red'))
+
     if frame == 29:
-        ax.text(0, 0, "Bonne Saint Valentin!", fontsize=16, color='red', ha='center', fontweight='bold')
+        ax.text(0, 0, "Bonne Saint Valentin!", fontsize=16, color='white', ha='center', fontweight='bold')
         scatter_hearts()
-    
+
     return []
 
 def on_click(event):
@@ -45,7 +47,11 @@ def scatter_hearts():
         x = random.uniform(-15, 15)
         y = random.uniform(-10, 10)
         heart_x, heart_y = heart_shape(np.linspace(0, 2 * np.pi, 100), scale=0.2, offset_x=x, offset_y=y)
-        ax.plot(heart_x, heart_y, 'r', linewidth=1)
+        ax.plot(heart_x, heart_y, 'w', linewidth=1)
+        
+        dx = random.uniform(-0.5, 0.5)
+        dy = random.uniform(0.5, 1.5)
+        ax.arrow(x, y, dx, dy, head_width=0.1, head_length=0.2, fc='w', ec='w')
 
 t = np.linspace(0, 2 * np.pi, 100)
 fig, ax = plt.subplots()
@@ -55,8 +61,11 @@ ax.set_ylim(-20, 20)
 ax.axis('off')
 
 x, y = heart_shape(t)
-line, = ax.plot(x, y, 'r', linewidth=3)
+line, = ax.plot(x, y, 'w', linewidth=3)
+
+ax.add_patch(plt.Rectangle((-20, -20), 40, 40, color='red'))
 
 i = fig.canvas.mpl_connect('button_press_event', on_click)
+
 ani = animation.FuncAnimation(fig, update, frames=100, interval=50, blit=True)
 plt.show()
