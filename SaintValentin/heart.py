@@ -34,7 +34,7 @@ def animate_opening(frame):
 
 def on_click(event):
     global ani_opening
-    ani.event_source.stop()
+    ani.event_source.stop()  # Arrêter l'animation principale
     ani_opening = animation.FuncAnimation(fig, animate_opening, frames=30, interval=50, blit=False, repeat=False)
     plt.draw()
 
